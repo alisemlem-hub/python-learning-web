@@ -1,5 +1,5 @@
 /*
- * MateriList — Overview of all 7 days with progress
+ * MateriList — Overview of all days with progress
  * Tropical Classroom Theme: colorful timeline, warm accents
  */
 import { Link } from 'wouter';
@@ -17,6 +17,14 @@ const dayColors = [
   { bg: 'bg-[#9B59B6]', text: 'text-[#9B59B6]', light: 'bg-[#9B59B6]/10', border: 'border-[#9B59B6]/30' },
   { bg: 'bg-[#E67E22]', text: 'text-[#E67E22]', light: 'bg-[#E67E22]/10', border: 'border-[#E67E22]/30' },
   { bg: 'bg-[#1ABC9C]', text: 'text-[#1ABC9C]', light: 'bg-[#1ABC9C]/10', border: 'border-[#1ABC9C]/30' },
+  { bg: 'bg-[#3498DB]', text: 'text-[#3498DB]', light: 'bg-[#3498DB]/10', border: 'border-[#3498DB]/30' },
+  { bg: 'bg-[#F39C12]', text: 'text-[#F39C12]', light: 'bg-[#F39C12]/10', border: 'border-[#F39C12]/30' },
+  { bg: 'bg-[#E74C3C]', text: 'text-[#E74C3C]', light: 'bg-[#E74C3C]/10', border: 'border-[#E74C3C]/30' },
+  { bg: 'bg-[#E67E22]', text: 'text-[#E67E22]', light: 'bg-[#E67E22]/10', border: 'border-[#E67E22]/30' },
+  { bg: 'bg-[#1ABC9C]', text: 'text-[#1ABC9C]', light: 'bg-[#1ABC9C]/10', border: 'border-[#1ABC9C]/30' },
+  { bg: 'bg-[#8E44AD]', text: 'text-[#8E44AD]', light: 'bg-[#8E44AD]/10', border: 'border-[#8E44AD]/30' },
+  { bg: 'bg-[#2980B9]', text: 'text-[#2980B9]', light: 'bg-[#2980B9]/10', border: 'border-[#2980B9]/30' },
+  { bg: 'bg-[#C0392B]', text: 'text-[#C0392B]', light: 'bg-[#C0392B]/10', border: 'border-[#C0392B]/30' },
 ];
 
 export default function MateriList() {
@@ -48,7 +56,7 @@ export default function MateriList() {
             {dayContents.map((day, index) => {
               const dayProgress = getDayProgress(day.day);
               const isCompleted = dayProgress === 100;
-              const colors = dayColors[index];
+              const colors = dayColors[index % dayColors.length];
               const dp = progress[day.day];
 
               return (

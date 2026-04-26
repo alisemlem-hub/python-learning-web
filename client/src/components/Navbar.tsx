@@ -38,7 +38,7 @@ export default function Navbar() {
               Belajar Python
             </span>
             <span className="text-[10px] font-semibold text-tropical-green leading-tight">
-              7 Hari Pertama
+              Hari 1 — 15
             </span>
           </div>
         </Link>

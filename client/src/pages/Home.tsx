@@ -26,9 +26,17 @@ const dayColors = [
   'from-[#9B59B6] to-[#8E44AD]',
   'from-[#E67E22] to-[#D35400]',
   'from-[#1ABC9C] to-[#16A085]',
+  'from-[#3498DB] to-[#2980B9]',
+  'from-[#F39C12] to-[#E67E22]',
+  'from-[#E74C3C] to-[#C0392B]',
+  'from-[#E67E22] to-[#D35400]',
+  'from-[#1ABC9C] to-[#16A085]',
+  'from-[#8E44AD] to-[#7D3C98]',
+  'from-[#2980B9] to-[#1F618D]',
+  'from-[#C0392B] to-[#922B21]',
 ];
 
-const dayEmojis = ['🚀', '📦', '🔢', '📝', '📋', '🔒', '🎯'];
+const dayEmojis = ['🚀', '📦', '🔢', '📝', '📋', '🔒', '🎯', '📖', '🔀', '🔄', '⚙️', '📦', '🎯', '🔝', '🐛'];
 
 export default function Home() {
   const { progress, getDayProgress, getOverallProgress, getTotalQuizScore, resetProgress } = useProgress();
@@ -78,7 +86,7 @@ export default function Home() {
               30 Hari Belajar Python
               <br />
               <span className="bg-gradient-to-r from-tropical-green to-tropical-teal bg-clip-text text-transparent">
-                Hari 1 — 7
+                Hari 1 — 15
               </span>
             </h1>
             <p className="text-base md:text-lg text-muted-foreground mb-6 leading-relaxed max-w-lg">
@@ -107,7 +115,7 @@ export default function Home() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {[
             { label: 'Progress', value: `${overallProgress}%`, icon: BookOpen, color: 'text-tropical-green', bg: 'bg-tropical-green/10' },
-            { label: 'Hari Selesai', value: `${completedDays}/7`, icon: CheckCircle, color: 'text-tropical-teal', bg: 'bg-tropical-teal/10' },
+            { label: 'Hari Selesai', value: `${completedDays}/${dayContents.length}`, icon: CheckCircle, color: 'text-tropical-teal', bg: 'bg-tropical-teal/10' },
             { label: 'Skor Kuis', value: `${totalQuizScore}/${totalQuizQuestions}`, icon: Trophy, color: 'text-tropical-yellow', bg: 'bg-tropical-yellow/10' },
             { label: 'Hari Aktif', value: `${Object.keys(progress).length}`, icon: Clock, color: 'text-tropical-coral', bg: 'bg-tropical-coral/10' },
           ].map((stat, i) => (
@@ -177,11 +185,11 @@ export default function Home() {
                 <Link href={`/materi/${day.day}`}>
                   <div className="group bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 overflow-hidden">
                     {/* Color header */}
-                    <div className={`h-2 bg-gradient-to-r ${dayColors[index]}`} />
+                    <div className={`h-2 bg-gradient-to-r ${dayColors[index % dayColors.length]}`} />
                     <div className="p-5">
                       <div className="flex items-start justify-between mb-3">
                         <div className="flex items-center gap-3">
-                          <span className="text-2xl">{dayEmojis[index]}</span>
+                          <span className="text-2xl">{dayEmojis[index % dayEmojis.length]}</span>
                           <div>
                             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
                               Hari {day.day}
@@ -220,7 +228,7 @@ export default function Home() {
                             initial={{ width: 0 }}
                             animate={{ width: `${dayProgress}%` }}
                             transition={{ duration: 0.8, delay: 0.2 + index * 0.05 }}
-                            className={`h-full rounded-full bg-gradient-to-r ${dayColors[index]}`}
+                            className={`h-full rounded-full bg-gradient-to-r ${dayColors[index % dayColors.length]}`}
                           />
                         </div>
                         <span className="text-xs font-bold text-muted-foreground w-10 text-right">

@@ -1,7 +1,9 @@
 // ============================================================
-// DATA KONTEN BELAJAR PYTHON DAY 1-7
+// DATA KONTEN BELAJAR PYTHON DAY 1-15
 // Tropical Classroom Theme
 // ============================================================
+
+import { dayContents8to15 } from './content-day8-15';
 
 export interface DayContent {
   day: number;
@@ -63,6 +65,14 @@ export const topicCategories = [
   { id: 'lists', name: 'Lists', icon: '📋', days: [5], description: 'Koleksi data yang terurut dan bisa diubah' },
   { id: 'tuples', name: 'Tuples', icon: '🔒', days: [6], description: 'Koleksi data yang terurut tapi tidak bisa diubah' },
   { id: 'sets', name: 'Sets', icon: '🎯', days: [7], description: 'Koleksi data unik tanpa urutan' },
+  { id: 'dictionaries', name: 'Dictionaries', icon: '📖', days: [8], description: 'Koleksi data pasangan key-value' },
+  { id: 'conditionals', name: 'Conditionals', icon: '🔀', days: [9], description: 'Percabangan if, elif, else dan operator logika' },
+  { id: 'loops', name: 'Loops', icon: '🔄', days: [10], description: 'Perulangan while dan for loop' },
+  { id: 'functions', name: 'Functions', icon: '⚙️', days: [11], description: 'Membuat dan menggunakan fungsi sendiri' },
+  { id: 'modules', name: 'Modules', icon: '📦', days: [12], description: 'Mengimport dan membuat module Python' },
+  { id: 'list-comprehension', name: 'List Comprehension & Lambda', icon: '🎯', days: [13], description: 'Cara singkat membuat list dan fungsi anonim' },
+  { id: 'higher-order', name: 'Higher Order Functions', icon: '🔝', days: [14], description: 'map, filter, reduce, closures, decorators' },
+  { id: 'error-types', name: 'Python Error Types', icon: '🐛', days: [15], description: 'Mengenal dan menangani berbagai jenis error' },
 ];
 
 export const dayContents: DayContent[] = [
@@ -1676,5 +1686,6 @@ print(genap.isdisjoint(ganjil))  # True — tidak ada yang sama</code></pre>
         difficulty: "sulit"
       }
     ]
-  }
+  },
+  ...dayContents8to15
 ];

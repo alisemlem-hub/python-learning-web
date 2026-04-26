@@ -124,16 +124,17 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
 
   const getOverallProgress = useCallback((): number => {
     let total = 0;
-    for (let day = 1; day <= 7; day++) {
-      total += getDayProgress(day);
+    const numDays = dayContents.length;
+    for (const dc of dayContents) {
+      total += getDayProgress(dc.day);
     }
-    return Math.round(total / 7);
+    return Math.round(total / numDays);
   }, [getDayProgress]);
 
   const getTotalQuizScore = useCallback((): number => {
     let total = 0;
-    for (let day = 1; day <= 7; day++) {
-      total += getDay(day).quizScore;
+    for (const dc of dayContents) {
+      total += getDay(dc.day).quizScore;
     }
     return total;
   }, [getDay]);

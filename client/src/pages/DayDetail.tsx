@@ -26,6 +26,14 @@ const dayColors = [
   'from-[#9B59B6] to-[#8E44AD]',
   'from-[#E67E22] to-[#D35400]',
   'from-[#1ABC9C] to-[#16A085]',
+  'from-[#3498DB] to-[#2980B9]',
+  'from-[#F39C12] to-[#E67E22]',
+  'from-[#E74C3C] to-[#C0392B]',
+  'from-[#E67E22] to-[#D35400]',
+  'from-[#1ABC9C] to-[#16A085]',
+  'from-[#8E44AD] to-[#7D3C98]',
+  'from-[#2980B9] to-[#1F618D]',
+  'from-[#C0392B] to-[#922B21]',
 ];
 
 export default function DayDetail() {
@@ -338,7 +346,7 @@ export default function DayDetail() {
           ) : (
             <div />
           )}
-          {dayNum < 7 ? (
+          {dayNum < dayContents.length ? (
             <Link href={`/materi/${dayNum + 1}`}>
               <Button className="gap-2 bg-tropical-green hover:bg-tropical-green/90 text-white">
                 Hari {dayNum + 1}

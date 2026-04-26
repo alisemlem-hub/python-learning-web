@@ -17,6 +17,14 @@ const topicColors = [
   'from-[#3498DB] to-[#2980B9]',
   'from-[#E67E22] to-[#D35400]',
   'from-[#1ABC9C] to-[#16A085]',
+  'from-[#3498DB] to-[#1F618D]',
+  'from-[#F39C12] to-[#E67E22]',
+  'from-[#E74C3C] to-[#C0392B]',
+  'from-[#E67E22] to-[#D35400]',
+  'from-[#1ABC9C] to-[#16A085]',
+  'from-[#8E44AD] to-[#7D3C98]',
+  'from-[#2980B9] to-[#1F618D]',
+  'from-[#C0392B] to-[#922B21]',
 ];
 
 export default function TopicView() {
@@ -52,7 +60,7 @@ export default function TopicView() {
               >
                 <div className="bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5 overflow-hidden group">
                   {/* Color header */}
-                  <div className={`h-24 bg-gradient-to-br ${topicColors[index]} relative flex items-center justify-center`}>
+                  <div className={`h-24 bg-gradient-to-br ${topicColors[index % topicColors.length]} relative flex items-center justify-center`}>
                     <span className="text-5xl opacity-90">{topic.icon}</span>
                     <div className="absolute inset-0 bg-black/5" />
                   </div>
