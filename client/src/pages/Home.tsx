@@ -10,10 +10,11 @@ import {
   Sparkles, RotateCcw, ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Progress } from '@/components/ui/progress';
+
 import Navbar from '@/components/Navbar';
 import { useProgress } from '@/contexts/ProgressContext';
 import { dayContents, motivationalQuotes } from '@/data/content';
+import { useAuth } from '@/_core/hooks/useAuth';
 
 const HERO_URL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663597698981/A5CLD2ZQUrT2Efx2ELSJro/hero-banner-FBLHJawazSMLgAWNQWi4ZB.webp';
 const PATTERN_URL = 'https://d2xsxph8kpxj0f.cloudfront.net/310519663597698981/A5CLD2ZQUrT2Efx2ELSJro/study-bg-pattern-jQBJJWX2hDXeF87w4MQT8S.webp';
@@ -39,6 +40,8 @@ const dayColors = [
 const dayEmojis = ['🚀', '📦', '🔢', '📝', '📋', '🔒', '🎯', '📖', '🔀', '🔄', '⚙️', '📦', '🎯', '🔝', '🐛'];
 
 export default function Home() {
+  const { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const { progress, getDayProgress, getOverallProgress, getTotalQuizScore, resetProgress } = useProgress();
   const [showReset, setShowReset] = useState(false);
 

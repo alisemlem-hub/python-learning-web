@@ -9,8 +9,8 @@ import Home from "./pages/Home";
 import DayDetail from "./pages/DayDetail";
 import MateriList from "./pages/MateriList";
 import TopicView from "./pages/TopicView";
-
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />
