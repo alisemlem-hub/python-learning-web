@@ -4,6 +4,7 @@
 // ============================================================
 
 import { dayContents8to15 } from './content-day8-15';
+import { day17Content } from './content-day17';
 
 export interface DayContent {
   day: number;
@@ -75,7 +76,7 @@ export const topicCategories = [
   { id: 'error-types', name: 'Python Error Types', icon: '🐛', days: [15], description: 'Mengenal dan menangani berbagai jenis error' },
 ];
 
-export const dayContents: DayContent[] = [
+const dayContentsArray: DayContent[] = [
   // ============================================================
   // DAY 1: INTRODUCTION
   // ============================================================
@@ -1687,5 +1688,213 @@ print(genap.isdisjoint(ganjil))  # True — tidak ada yang sama</code></pre>
       }
     ]
   },
-  ...dayContents8to15
+  ...dayContents8to15,
+  {
+    day: 17,
+    title: 'Exception Handling & Advanced Arguments',
+    titleEn: 'Exception Handling & Advanced Arguments',
+    icon: '🛡️',
+    color: '#9B59B6',
+    topics: ['Exception Handling', 'Unpacking & Packing', 'Enumerate & Zip'],
+    sections: [
+      {
+        id: 'exception-handling',
+        title: 'Exception Handling (Penanganan Error)',
+        content: `
+<p>Python menggunakan <strong>try</strong> dan <strong>except</strong> untuk menangani error secara "graceful" (elegan). Ketika program mendeteksi error, ia dapat "keluar dengan teratur" daripada crash.</p>
+
+<h3>Struktur Dasar Try-Except</h3>
+<pre><code class="language-python">try:
+    # Kode yang mungkin menimbulkan error
+    hasil = 10 / 0
+except:
+    # Kode ini dijalankan jika ada error
+    print('Terjadi error!')</code></pre>
+
+<h3>Menangkap Error Spesifik</h3>
+<pre><code class="language-python">try:
+    nama = input('Masukkan nama: ')
+    tahun_lahir = input('Tahun lahir: ')
+    umur = 2024 - int(tahun_lahir)
+    print(f'{nama} berusia {umur} tahun')
+except ValueError:
+    print('Error: Tahun lahir harus berupa angka!')
+except ZeroDivisionError:
+    print('Error: Tidak bisa membagi dengan nol!')
+except TypeError:
+    print('Error: Tipe data tidak sesuai!')</code></pre>
+
+<h3>Try-Except-Else-Finally</h3>
+<pre><code class="language-python">try:
+    file = open('data.txt', 'r')
+    data = file.read()
+except FileNotFoundError:
+    print('File tidak ditemukan!')
+else:
+    print('File berhasil dibaca')
+finally:
+    print('Proses selesai')
+    file.close()</code></pre>
+
+<p><strong>Analogi:</strong> Bayangkan Anda pergi ke ATM: try = masukkan kartu dan PIN, except = jika PIN salah tampilkan error, else = jika benar ambil uang, finally = kartu selalu dikeluarkan.</p>
+        `
+      },
+      {
+        id: 'unpacking-packing',
+        title: 'Unpacking & Packing Arguments',
+        content: `
+<h3>Unpacking (Membuka Struktur Data)</h3>
+<p>Unpacking adalah cara mengekstrak elemen dari list/tuple/dict menjadi variabel terpisah.</p>
+
+<pre><code class="language-python"># Unpacking sederhana
+negara = ['Indonesia', 'Malaysia', 'Singapura']
+a, b, c = negara
+
+# Unpacking dengan *rest
+negara = ['Indonesia', 'Malaysia', 'Singapura', 'Thailand', 'Vietnam']
+pertama, kedua, *sisanya = negara
+print(sisanya)   # ['Singapura', 'Thailand', 'Vietnam']</code></pre>
+
+<h3>Unpacking Dictionary</h3>
+<pre><code class="language-python">def info_siswa(nama, kelas, nilai):
+    return f'{nama} di kelas {kelas} dengan nilai {nilai}'
+
+data = {'nama': 'Budi', 'kelas': '10A', 'nilai': 85}
+print(info_siswa(**data))
+# Output: Budi di kelas 10A dengan nilai 85</code></pre>
+
+<h3>Packing dengan *args dan **kwargs</h3>
+<pre><code class="language-python">def jumlahkan(*angka):
+    return sum(angka)
+
+print(jumlahkan(1, 2, 3))           # 6
+print(jumlahkan(1, 2, 3, 4, 5))     # 15
+
+def buat_profil(**info):
+    for kunci, nilai in info.items():
+        print(f'{kunci}: {nilai}')
+
+buat_profil(nama='Ani', umur=20, kota='Jakarta')</code></pre>
+        `
+      },
+      {
+        id: 'enumerate-zip',
+        title: 'Enumerate & Zip',
+        content: `
+<h3>Enumerate - Mendapatkan Index dan Nilai</h3>
+<p>Fungsi <strong>enumerate</strong> memberikan index dan nilai saat melakukan loop.</p>
+
+<pre><code class="language-python">buah = ['apel', 'jeruk', 'mangga']
+for index, buah_item in enumerate(buah):
+    print(f'{index}: {buah_item}')
+
+# Output:
+# 0: apel
+# 1: jeruk
+# 2: mangga
+
+# Dengan starting index
+for nomor, buah_item in enumerate(buah, start=1):
+    print(f'{nomor}. {buah_item}')</code></pre>
+
+<h3>Zip - Menggabungkan Multiple List</h3>
+<p>Fungsi <strong>zip</strong> menggabungkan beberapa list dan melakukan loop bersamaan.</p>
+
+<pre><code class="language-python">nama = ['Budi', 'Ani', 'Citra']
+nilai = [85, 90, 88]
+
+for n, v in zip(nama, nilai):
+    print(f'{n} mendapat nilai {v}')
+
+# Output:
+# Budi mendapat nilai 85
+# Ani mendapat nilai 90
+# Citra mendapat nilai 88</code></pre>
+        `
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Apa fungsi dari blok "except" dalam try-except?',
+        options: ['Mengakhiri program', 'Menangani error jika terjadi', 'Mengecek apakah kode benar', 'Menampilkan pesan sukses'],
+        correct: 1,
+        explanation: 'Blok "except" dijalankan jika ada error di blok "try". Ini memungkinkan program menangani error dengan graceful.'
+      },
+      {
+        id: 2,
+        question: 'Kapan blok "finally" dijalankan?',
+        options: ['Hanya jika ada error', 'Hanya jika tidak ada error', 'Selalu dijalankan, baik ada error atau tidak', 'Tidak pernah dijalankan'],
+        correct: 2,
+        explanation: 'Blok "finally" SELALU dijalankan, baik ada error di "try" atau tidak. Berguna untuk cleanup.'
+      },
+      {
+        id: 3,
+        question: 'Apa hasil dari: a, *b, c = [1, 2, 3, 4, 5]',
+        options: ['a=1, b=2, c=3', 'a=1, b=[2,3,4], c=5', 'a=[1], b=[2,3,4], c=[5]', 'Error'],
+        correct: 1,
+        explanation: 'Operator * mengumpulkan elemen tengah ke dalam list. Jadi a=1, b=[2,3,4], c=5.'
+      },
+      {
+        id: 4,
+        question: 'Apa perbedaan *args dan **kwargs?',
+        options: ['Tidak ada perbedaan', '*args untuk list, **kwargs untuk dictionary', '*args untuk tuple, **kwargs untuk dictionary', '*args untuk string, **kwargs untuk set'],
+        correct: 2,
+        explanation: '*args mengumpulkan argumen positional menjadi tuple, **kwargs mengumpulkan keyword arguments menjadi dictionary.'
+      },
+      {
+        id: 5,
+        question: 'Apa output dari: for i, x in enumerate(["a", "b", "c"]): print(i, x)',
+        options: ['0 a, 1 b, 2 c', 'a 0, b 1, c 2', '1 a, 2 b, 3 c', 'Error'],
+        correct: 0,
+        explanation: 'Enumerate memberikan index (dimulai dari 0) dan nilai. Output: 0 a, 1 b, 2 c.'
+      },
+      {
+        id: 6,
+        question: 'Apa output dari: list(zip([1, 2], ["a", "b", "c"]))',
+        options: ['[(1, "a"), (2, "b"), ("c")]', '[(1, "a"), (2, "b")]', '[(1, "a"), (2, "b"), (None, "c")]', 'Error'],
+        correct: 1,
+        explanation: 'Zip berhenti saat list terpendek habis. Jadi output: [(1, "a"), (2, "b")]'
+      }
+    ],
+    exercises: [
+      {
+        id: 1,
+        title: 'Tangani Error Input',
+        description: 'Buat program yang menerima input dua angka dan menampilkan hasil pembagian. Tangani error jika user memasukkan bukan angka atau membagi dengan nol.',
+        hint: 'Gunakan try-except untuk menangani ValueError dan ZeroDivisionError. Tampilkan pesan error yang jelas untuk setiap jenis error.',
+        difficulty: 'mudah'
+      },
+      {
+        id: 2,
+        title: 'Unpack Data Siswa',
+        description: 'Diberikan list: ["Budi", "Jakarta", 85, "10A"]. Unpack ke variabel nama, kota, nilai, kelas. Tampilkan informasinya.',
+        hint: 'Gunakan a, b, c, d = list_data. Atau gunakan unpacking dengan *rest jika ada elemen lebih.',
+        difficulty: 'mudah'
+      },
+      {
+        id: 3,
+        title: 'Fungsi dengan *args',
+        description: 'Buat fungsi yang menerima jumlah angka tidak terbatas dan menampilkan: jumlah, rata-rata, nilai terbesar, dan terkecil.',
+        hint: 'Gunakan *args untuk parameter. Gunakan sum(), len(), max(), min() untuk perhitungan.',
+        difficulty: 'sedang'
+      },
+      {
+        id: 4,
+        title: 'Gabungkan Enumerate dan Zip',
+        description: 'Diberikan 2 list: nama = ["Budi", "Ani", "Citra"], nilai = [85, 90, 88]. Tampilkan dengan nomor urut menggunakan enumerate dan zip.',
+        hint: 'Gunakan enumerate() untuk nomor urut. Gunakan zip() untuk menggabungkan 2 list. Format output: "1. Budi: 85"',
+        difficulty: 'sedang'
+      },
+      {
+        id: 5,
+        title: 'Kombinasi Try-Except dan Unpacking',
+        description: 'Buat program yang menerima input berupa string dengan format "nama,umur,kota". Split dan unpack ke variabel. Tangani error jika format salah atau umur bukan angka.',
+        hint: 'Gunakan split(",") untuk memisahkan data. Gunakan try-except untuk menangani error. Unpack hasil split ke variabel.',
+        difficulty: 'sulit'
+      }
+    ]
+  }
 ];
+
+export const dayContents = dayContentsArray;
