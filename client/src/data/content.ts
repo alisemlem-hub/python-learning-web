@@ -576,7 +576,7 @@ print(type(1 + 2j))          # &lt;class 'complex'&gt;</code></pre>
     titleEn: "Operators",
     icon: "🔢",
     color: "#FF6B6B",
-    topics: ["Boolean", "Assignment Operators", "Arithmetic Operators", "Comparison Operators", "Logical Operators"],
+    topics: ["Boolean", "Assignment Operators", "Arithmetic Operators", "Comparison Operators", "Identity & Membership", "Logical Operators"],
     sections: [
       {
         id: "boolean",
